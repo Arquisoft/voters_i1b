@@ -1,4 +1,4 @@
-package hello;
+package VoterAccess;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
