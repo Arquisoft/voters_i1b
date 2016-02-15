@@ -27,14 +27,17 @@ public class Voter {
     private long code;
 
 
-    public Voter(long id, String password, String name, String email, String nif, long code) {
-        this.id = id;
+    public Voter(String name, String password, String email, String nif, long code) {
         this.password = password;
         this.name = name;
         this.email = email;
         this.nif = nif;
         this.code = code;
     }
+
+
+
+
 
     public Voter(){}
 

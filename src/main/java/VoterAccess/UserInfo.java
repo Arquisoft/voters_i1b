@@ -10,14 +10,30 @@ public class UserInfo {
     private final String name;
     private final Integer age;
 
-    public UserInfo(String name, Integer age) {
+
+
+
+    private final String email;
+    private final String password;
+
+    public UserInfo(String name, Integer age,String email, String password) {
     	log.info("Creating user " + name + ". age: " + age);
         this.name = name;
         this.age = age;
+        this.email= email;
+        this.password= password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public Integer getAge() {
