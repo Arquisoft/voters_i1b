@@ -10,18 +10,23 @@ public class UserInfo {
     private final String name;
     private final Integer age;
 
-
-
-
     private final String email;
     private final String password;
 
+    private String votingStation;
     public UserInfo(String name, Integer age,String email, String password) {
     	log.info("Creating user " + name + ". age: " + age);
         this.name = name;
         this.age = age;
         this.email= email;
         this.password= password;
+    }
+    public String getVotingStation() {
+    	return votingStation;
+    }
+    
+    public void setVotingStation(String votingStation) {
+    	this.votingStation = votingStation;
     }
 
     public String getPassword() {
