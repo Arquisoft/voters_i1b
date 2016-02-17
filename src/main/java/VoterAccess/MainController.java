@@ -54,12 +54,13 @@ public class MainController {
 			checkUser.setString(1, userInfo.getEmail());
 			checkUser.setString(2, userInfo.getPassword());
 			ResultSet rs = checkUser.executeQuery();
-			Voter dbuser = new Voter(null, null, null, null);
+			Voter dbuser = new Voter(null, null, null, null, null);
 			while (rs.next()) {
 				dbuser.setName(rs.getString("Name"));
 				dbuser.setEmail(rs.getString("Email"));
 				dbuser.setPassword(rs.getString("Password"));
 				dbuser.setPollingStationCode(rs.getString("Station"));
+				dbuser.setNIF(rs.getString("NIF"));
 			}
 			if (userInfo.getPassword().equals(dbuser.getPassword()) && userInfo.getEmail().equals(dbuser.getEmail())) {
 				return new ResponseEntity<UserInfo>(userInfo, HttpStatus.OK);
@@ -91,7 +92,7 @@ public class MainController {
 			checkUser.setString(2, password);
 			ResultSet rs = checkUser.executeQuery();
 			while(rs.next()) {
-				voter = new Voter(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Station"));
+				voter = new Voter(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Station"), rs.getString("NIF"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,7 +110,7 @@ public class MainController {
 			checkUser.setString(1, password);
 			ResultSet rs = checkUser.executeQuery();
 			while(rs.next()) {
-				voter = new Voter(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Station"));
+				voter = new Voter(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Station"), rs.getString("NIF"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

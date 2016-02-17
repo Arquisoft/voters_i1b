@@ -27,12 +27,13 @@ public class Voter {
     private String email;
     private String pollingStationCode;
 
-
-    public Voter(String name, String password, String email, String pollingStationCode) {
+    private String NIF;
+    public Voter(String name, String password, String email, String pollingStationCode, String NIF) {
         this.password = password;
         this.name = name;
         this.email = email;
         this.pollingStationCode = pollingStationCode;
+        this.NIF = NIF;
     }
 
     public Voter(){}
@@ -97,6 +98,10 @@ public class Voter {
     public int hashCode() {
         return email.hashCode();
     }
+
+	public void setNIF(String NIF) {
+		this.NIF = NIF;
+	}
 
 
 }
