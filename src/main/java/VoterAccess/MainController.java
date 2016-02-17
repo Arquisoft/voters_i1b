@@ -18,7 +18,7 @@ import java.sql.SQLException;
 @RestController
 public class MainController {
 
-	@Autowired
+	//@Autowired
 	private VoterService vService;
 	// @RequestMapping(value = "/user", method = RequestMethod.POST, produces =
 	// { MediaType.APPLICATION_JSON_VALUE})
@@ -27,9 +27,9 @@ public class MainController {
 	private static String user = "andrei_vot";
 	private static String pass = "votersgonnavote";
 
-	private Connection con;
+	private static Connection con;
 
-	public void connToDb() {
+	public static void connToDb() {
 		try {
 			con = DriverManager.getConnection(hostname, user, pass);
 			System.out.println("Connected");
@@ -79,5 +79,22 @@ public class MainController {
 	@RequestMapping("/")
 	public String landing() {
 		return "User Management Service";
+	}
+
+	public static Voter findByEmail(String email, String password) {
+		Voter voter = null;
+		try {
+			java.sql.PreparedStatement checkUser = con
+					.prepareStatement("SELECT * FROM Voters WHERE email = ? AND password =  ?");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connToDb();
+		return voter;
+	}
+
+	public static Voter updatePassword(String email, String password) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
