@@ -83,18 +83,37 @@ public class MainController {
 
 	public static Voter findByEmail(String email, String password) {
 		Voter voter = null;
+		connToDb();
 		try {
 			java.sql.PreparedStatement checkUser = con
 					.prepareStatement("SELECT * FROM Voters WHERE email = ? AND password =  ?");
+			checkUser.setString(1, email);
+			checkUser.setString(2, password);
+			ResultSet rs = checkUser.executeQuery();
+			while(rs.next()) {
+				voter = new Voter(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Station"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		connToDb();
 		return voter;
 	}
 
 	public static Voter updatePassword(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		Voter voter = null;
+		connToDb();
+		try {
+			java.sql.PreparedStatement checkUser = con
+					.prepareStatement("UPDATE Voters SET password = ? WHERE email = ?");
+			checkUser.setString(1, email);
+			checkUser.setString(1, password);
+			ResultSet rs = checkUser.executeQuery();
+			while(rs.next()) {
+				voter = new Voter(rs.getString("Name"), rs.getString("Email"), rs.getString("Password"), rs.getString("Station"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return voter;
 	}
 }
