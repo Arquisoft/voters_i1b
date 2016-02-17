@@ -10,34 +10,30 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by Carlos on 15/2/16.
  */
-@Entity
+@Entity @Table(name="Voters")
 public class Voter {
 
     @Id
     @GeneratedValue
     private long id;
+    
     @Column(nullable = false)
     private String name;
+    
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private String nif;
+    
     @Column(nullable = false)
     private String email;
-    private long code;
+    private long pollingStationCode;
 
 
-    public Voter(String name, String password, String email, String nif, long code) {
+    public Voter(String name, String password, String email, long pollingStationCode) {
         this.password = password;
         this.name = name;
         this.email = email;
-        this.nif = nif;
-        this.code = code;
+        this.pollingStationCode = pollingStationCode;
     }
-
-
-
-
 
     public Voter(){}
 
@@ -57,12 +53,12 @@ public class Voter {
         this.name = name;
     }
 
-    public long getCode() {
-        return code;
+    public long getPollingStationCode() {
+        return pollingStationCode;
     }
 
-    public void setCode(long code) {
-        this.code = code;
+    public void setPollingStationCode(long pollingStationCode) {
+        this.pollingStationCode = pollingStationCode;
     }
 
     public String getEmail() {
@@ -72,21 +68,18 @@ public class Voter {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getNif() {
-        return nif;
-    }
-
-    public void setNif(String nif) {
-        this.nif = nif;
-    }
-
+    
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public boolean validate(Voter v)
+    {
+    	return equals(v) && password.equals(v.password);
     }
 
     @Override
@@ -96,13 +89,13 @@ public class Voter {
 
         Voter voter = (Voter) o;
 
-        return nif != null ? nif.equals(voter.nif) : voter.nif == null;
+        return email.equals(voter.getEmail());
 
     }
 
     @Override
     public int hashCode() {
-        return nif != null ? nif.hashCode() : 0;
+        return email.hashCode();
     }
 
 
