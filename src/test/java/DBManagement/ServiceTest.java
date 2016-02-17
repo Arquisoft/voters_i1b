@@ -15,7 +15,7 @@ public class ServiceTest {
         String pass = "pepe123";
         String name = "Pepe";
         String nif = "70100200";
-        Voter voter1 = new Voter(name,pass,email,nif,123);
+      //  Voter voter1 = new Voter(name,pass,email,nif,123);
 
 
 

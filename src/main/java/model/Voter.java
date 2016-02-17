@@ -25,10 +25,10 @@ public class Voter {
     
     @Column(nullable = false)
     private String email;
-    private long pollingStationCode;
+    private String pollingStationCode;
 
 
-    public Voter(String name, String password, String email, long pollingStationCode) {
+    public Voter(String name, String password, String email, String pollingStationCode) {
         this.password = password;
         this.name = name;
         this.email = email;
@@ -53,11 +53,11 @@ public class Voter {
         this.name = name;
     }
 
-    public long getPollingStationCode() {
+    public String getPollingStationCode() {
         return pollingStationCode;
     }
 
-    public void setPollingStationCode(long pollingStationCode) {
+    public void setPollingStationCode(String pollingStationCode) {
         this.pollingStationCode = pollingStationCode;
     }
 
