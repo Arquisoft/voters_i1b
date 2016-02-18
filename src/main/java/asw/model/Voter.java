@@ -1,22 +1,27 @@
-package model;
+package asw.model;
 
-import org.springframework.data.annotation.Id;
+// import org.springframework.data.annotation.Id;
+// import javax.persistence.Id;
 
-import javax.annotation.Nullable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 
-@Entity @Table(name="Voters")
+@Entity 
+@Table(name="Voters")
 public class Voter {
 
-    @Id
-    @GeneratedValue
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;    
+	
     private String name;    
-    private String password;    
+    private String password;
+    
+    @Column(unique=true)
     private String email;
+    @Column(unique=true)
     private String nif;
+    
     private String pollingStationCode;
 
 

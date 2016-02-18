@@ -1,9 +1,5 @@
-package VoterAccess;
+package asw.voterAccess;
 
-
-import DBManagement.VoteRepositoryImpl;
-import DBManagement.VoterRepository;
-import model.Voter;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +8,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import asw.dbManagement.VoterRepository;
+import asw.model.Voter;
+
 
 @RestController
 public class MainController {
-
 
     
     @RequestMapping(value = "/user", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE})
@@ -35,7 +33,8 @@ public class MainController {
     }
     
     
-    private VoterRepository voterRep = new VoteRepositoryImpl();   
+    @Autowired
+    public VoterRepository voterRep ;   
     
     @RequestMapping("/probarDB")
     public String probardb() {
