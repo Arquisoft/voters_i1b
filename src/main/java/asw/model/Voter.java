@@ -93,7 +93,7 @@ public class Voter {
 
     @Override
     public int hashCode() {
-        return email.hashCode();
+        return nif.hashCode();
     }
 
 	public String getNif() {

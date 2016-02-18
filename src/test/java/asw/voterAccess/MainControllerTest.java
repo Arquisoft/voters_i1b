@@ -49,7 +49,7 @@ public class MainControllerTest {
 	public void getUser() throws Exception {
 		String userURI = base.toString() + "/user";  
 		ResponseEntity<String> response = template.getForEntity(userURI, String.class);
-		// UserInfo expected = new UserInfo("pepe",0);
+		//UserInfo expected = new UserInfo("pepe",0);
 	}
 
 }

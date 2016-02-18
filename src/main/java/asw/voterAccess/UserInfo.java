@@ -8,16 +8,16 @@ public class UserInfo {
 	private static final Logger log = LoggerFactory.getLogger(UserInfo.class);
 
     private final String name;
-    private final Integer age;
+    //private final Integer age;
 
     private final String email;
     private final String password;
 
     private String votingStation;
-    public UserInfo(String name, Integer age,String email, String password) {
-    	log.info("Creating user " + name + ". age: " + age);
+    public UserInfo(String name, String email, String password, String Station) {
+    	//log.info("Creating user " + name + ". age: " + age);
         this.name = name;
-        this.age = age;
+        //this.age = age;
         this.email= email;
         this.password= password;
     }
@@ -41,7 +41,7 @@ public class UserInfo {
         return email;
     }
 
-    public Integer getAge() {
-        return age;
-    }
+    //public Integer getAge() {
+    //    return age;
+    //}
 }
