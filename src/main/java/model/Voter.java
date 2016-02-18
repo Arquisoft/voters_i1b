@@ -7,32 +7,25 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
-/**
- * Created by Carlos on 15/2/16.
- */
 @Entity @Table(name="Voters")
 public class Voter {
 
     @Id
     @GeneratedValue
-    private long id;
-    
-    @Column(nullable = false)
-    private String name;
-    
-    @Column(nullable = false)
-    private String password;
-    
-    @Column(nullable = false)
+    private long id;    
+    private String name;    
+    private String password;    
     private String email;
-    private long pollingStationCode;
+    private String nif;
+    private String pollingStationCode;
 
 
-    public Voter(String name, String password, String email, long pollingStationCode) {
+    public Voter(String name, String password, String email, String pollingStationCode, String nif) {
         this.password = password;
         this.name = name;
         this.email = email;
         this.pollingStationCode = pollingStationCode;
+        this.setNif(nif);
     }
 
     public Voter(){}
@@ -53,11 +46,11 @@ public class Voter {
         this.name = name;
     }
 
-    public long getPollingStationCode() {
+    public String getPollingStationCode() {
         return pollingStationCode;
     }
 
-    public void setPollingStationCode(long pollingStationCode) {
+    public void setPollingStationCode(String pollingStationCode) {
         this.pollingStationCode = pollingStationCode;
     }
 
@@ -97,6 +90,14 @@ public class Voter {
     public int hashCode() {
         return email.hashCode();
     }
+
+	public String getNif() {
+		return nif;
+	}
+
+	public void setNif(String nif) {
+		this.nif = nif;
+	}
 
 
 }

@@ -15,6 +15,14 @@
     </parent>
 
     <dependencies>
+    	<dependency>
+            <groupId>io.spring.platform</groupId>
+            <artifactId>platform-bom</artifactId>
+            <version>1.1.2.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -34,14 +42,17 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.1.0.Final</version>
-        </dependency>
+            </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.1.0.Final</version>
         </dependency>
+           <!-- DataSource (HikariCP) -->
+		<dependency>
+    		<groupId>com.zaxxer</groupId>
+    		<artifactId>HikariCP</artifactId>
+		</dependency>
 
     </dependencies>
 
