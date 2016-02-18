@@ -1,7 +1,8 @@
-package DBManagement;
+package asw.dbManagement;
 
-import model.Voter;
 import org.junit.Test;
+
+import asw.model.Voter;
 
 /**
  * Created by Carlos on 15/2/16.
@@ -15,7 +16,7 @@ public class ServiceTest {
         String pass = "pepe123";
         String name = "Pepe";
         String nif = "70100200";
-        Voter voter1 = new Voter(name,pass,email,nif, "123");
+        Voter voter1 = new Voter(name,pass,email,nif,"123");
 
 
 
