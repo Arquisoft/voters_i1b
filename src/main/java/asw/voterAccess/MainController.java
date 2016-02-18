@@ -1,11 +1,15 @@
 package asw.voterAccess;
 
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import asw.dbManagement.VoterRepository;
 import asw.model.Voter;
@@ -14,15 +18,26 @@ import asw.model.Voter;
 @RestController
 public class MainController {
 
+
+    @Autowired
+    private VoterRepository voterRep;
+    private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
     
-    @RequestMapping(value = "/user", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<UserInfo> getVoterInfo(@RequestBody UserInfo userInfo) {
+    @RequestMapping(value = "/user",consumes = { MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Voter> getVoterInfo(@RequestBody String json) {
             //If the user on the input is the same as the one in the db and credentials are ok
             //return user info and HTTP response
-         //   if(userInfo.getPassword().equals(dbuser.password) && userInfo.getEmail().equals(dbuser.email)){
-           // return new ResponseEntity<UserInfo>(userInfo, HttpStatus.OK);}
-    	
-            return new ResponseEntity<UserInfo>(HttpStatus.NOT_FOUND);
+    	Voter voter;
+    	try {
+            voter = JSON_MAPPER.readValue(json, Voter.class);
+            Voter dbVoter = voterRep.findByEmail(voter.getEmail());
+            if(voter.validate(dbVoter)){
+         	   return new ResponseEntity<Voter>(dbVoter, HttpStatus.OK);}
+     	
+        } catch (Exception e) {
+        	return new ResponseEntity<Voter>(HttpStatus.NOT_FOUND);
+        }
+            return new ResponseEntity<Voter>(HttpStatus.NOT_FOUND);
        // return this.vService.findByEmailAndPassword(userInfo.getEmail(),userInfo.getPassword());
     }
 
@@ -32,8 +47,6 @@ public class MainController {
     }
     
     
-    @Autowired
-    public VoterRepository voterRep ;   
     
     @RequestMapping("/probarDB")
     public String probardb() {

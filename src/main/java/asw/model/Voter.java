@@ -35,6 +35,11 @@ public class Voter {
 
     public Voter(){}
 
+    public Voter(String name, String password) {
+        this.password = password;
+        this.name = name;
+        }
+    
     public long getId() {
         return id;
     }

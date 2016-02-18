@@ -9,7 +9,6 @@ import asw.model.Voter;
 @Repository
 public interface VoterRepository extends CrudRepository<Voter, Long> {
 
-
     Voter findByEmail(String email);
 
     //Voter updatePassword(String email,String password);
