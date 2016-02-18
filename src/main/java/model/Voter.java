@@ -25,14 +25,15 @@ public class Voter {
     
     @Column(nullable = false)
     private String email;
-    private long pollingStationCode;
+    private String pollingStationCode;
 
-
-    public Voter(String name, String password, String email, long pollingStationCode) {
+    private String NIF;
+    public Voter(String name, String password, String email, String pollingStationCode, String NIF) {
         this.password = password;
         this.name = name;
         this.email = email;
         this.pollingStationCode = pollingStationCode;
+        this.NIF = NIF;
     }
 
     public Voter(){}
@@ -53,11 +54,11 @@ public class Voter {
         this.name = name;
     }
 
-    public long getPollingStationCode() {
+    public String getPollingStationCode() {
         return pollingStationCode;
     }
 
-    public void setPollingStationCode(long pollingStationCode) {
+    public void setPollingStationCode(String pollingStationCode) {
         this.pollingStationCode = pollingStationCode;
     }
 
@@ -97,6 +98,10 @@ public class Voter {
     public int hashCode() {
         return email.hashCode();
     }
+
+	public void setNIF(String NIF) {
+		this.NIF = NIF;
+	}
 
 
 }

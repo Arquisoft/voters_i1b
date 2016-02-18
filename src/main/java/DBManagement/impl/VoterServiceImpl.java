@@ -1,6 +1,7 @@
 package DBManagement.impl;
 
 import DBManagement.VoterService;
+import VoterAccess.MainController;
 import model.Voter;
 
 /**
@@ -9,10 +10,10 @@ import model.Voter;
 public class VoterServiceImpl implements VoterService {
 
     public Voter findByEmailAndPassword(String email, String password) {
-        return null;
+        return MainController.findByEmail(email, password);
     }
     
     public Voter updateVoterPassword(String email, String password) {
-        return null;
+        return MainController.updatePassword(email, password);
     }
 }
