@@ -5,9 +5,13 @@ package asw.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity 
 @Table(name="Voters")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Voter {
 
 	@Id
@@ -25,6 +29,7 @@ public class Voter {
     private String pollingStationCode;
 
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public Voter(String name, String password, String email, String pollingStationCode, String nif) {
         this.password = password;
         this.name = name;
@@ -55,6 +60,23 @@ public class Voter {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+
+	public String getNif() {
+		return nif;
+	}
+
+	public void setNif(String nif) {
+		this.nif = nif;
+	}
 
     public String getPollingStationCode() {
         return pollingStationCode;
@@ -64,13 +86,6 @@ public class Voter {
         this.pollingStationCode = pollingStationCode;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
     
     public String getPassword() {
         return password;
@@ -98,16 +113,7 @@ public class Voter {
 
     @Override
     public int hashCode() {
-        return nif.hashCode();
+        return email.hashCode();
     }
-
-	public String getNif() {
-		return nif;
-	}
-
-	public void setNif(String nif) {
-		this.nif = nif;
-	}
-
 
 }
