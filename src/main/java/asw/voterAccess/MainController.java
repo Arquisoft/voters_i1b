@@ -1,6 +1,7 @@
 package asw.voterAccess;
 
 import java.io.IOException;
+import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,40 +28,45 @@ public class MainController {
     
     @RequestMapping(value = "/user",consumes = { MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Voter> getVoterInfo(@RequestBody String json) {
-    	Voter voter;
-    	try {
-            voter = JSON_MAPPER.readValue(json, Voter.class);
-            Voter dbVoter = voterRep.findByEmail(voter.getEmail());
-            if(voter.validate(dbVoter)){
-            	System.out.println("POST SERVED");
-         	  	return new ResponseEntity<Voter>(dbVoter, HttpStatus.OK);}       
-     	
-        } catch (Exception e) {
-        	System.out.println("POST Failed");
-        	e.printStackTrace();        	
-        	return new ResponseEntity<Voter>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-            return new ResponseEntity<Voter>(HttpStatus.NOT_FOUND);
+    	
+    	return authAndOperate((dbVoter)->{
+            						System.out.println("POST SERVED");
+            						return new ResponseEntity<Voter>(dbVoter, HttpStatus.OK);
+            						},json);
     }
     
     @RequestMapping(value = "/changePass",consumes = { MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Voter> changePass(@RequestBody String json) {
+    	return authAndOperate((dbVoter)->{
+            						System.out.println("POST SERVED");
+            						ObjectNode node = null;
+            						try {
+            							node = new ObjectMapper().readValue(json, ObjectNode.class);
+            							} catch (Exception e) {e.printStackTrace(); 
+            			            	return new ResponseEntity<Voter>(HttpStatus.INTERNAL_SERVER_ERROR);}
+            						dbVoter.setPassword(node.get("newPassword").asText());
+            						voterRep.save(dbVoter);
+            						return new ResponseEntity<Voter>(HttpStatus.OK);
+         	  					    },json); 
+    }
+    
+    private ResponseEntity<Voter> authAndOperate(Function<Voter,ResponseEntity<Voter>> f, String json)
+    {
     	Voter voter;
     	try {
             voter = JSON_MAPPER.readValue(json, Voter.class);
             Voter dbVoter = voterRep.findByEmail(voter.getEmail());
-            if(voter.validate(dbVoter)){
-            	System.out.println("POST SERVED");
-            	final ObjectNode node = new ObjectMapper().readValue(json, ObjectNode.class);
-            	dbVoter.setPassword(node.get("newPassword").asText());
-         	  	return new ResponseEntity<Voter>(HttpStatus.OK);}       
-     	
-        } catch (Exception e) {
-        	System.out.println("POST Failed");
-        	e.printStackTrace();        	
-        	return new ResponseEntity<Voter>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-            return new ResponseEntity<Voter>(HttpStatus.NOT_FOUND);
+            if(voter.validate(dbVoter))
+            {
+            	return f.apply(dbVoter);
+            }
+          } catch (Exception e) {
+            	System.out.println("POST Failed");
+            	e.printStackTrace();        	
+            	return new ResponseEntity<Voter>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+                return new ResponseEntity<Voter>(HttpStatus.NOT_FOUND);
+    	
     }
     
 
