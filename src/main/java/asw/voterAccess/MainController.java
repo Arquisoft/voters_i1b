@@ -68,9 +68,9 @@ public class MainController {
                 return new ResponseEntity<Voter>(HttpStatus.NOT_FOUND);
     	
     }
-    
 
     @RequestMapping("/")
+    @ResponseBody
     public String landing() {
         return "<!DOCTYPE html>"+
 "<html lang=\"en\">"+
