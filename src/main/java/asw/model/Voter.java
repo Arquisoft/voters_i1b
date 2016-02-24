@@ -4,6 +4,8 @@ package asw.model;
 // import javax.persistence.Id;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,14 +13,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity 
 @Table(name="Voters")
-@JsonIgnoreProperties(ignoreUnknown = true)
+@XmlRootElement(name = "voter")
 public class Voter {
 
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;    
 	
-    private String name;    
+    private String name;
+    
     private String password;
     
     @Column(unique=true)
@@ -29,7 +32,6 @@ public class Voter {
     private String pollingStationCode;
 
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
     public Voter(String name, String password, String email, String pollingStationCode, String nif) {
         this.password = password;
         this.name = name;
@@ -40,9 +42,9 @@ public class Voter {
 
     public Voter(){}
 
-    public Voter(String name, String password) {
+    public Voter(String email, String password) {
         this.password = password;
-        this.name = name;
+        this.email = email;
         }
     
     public long getId() {
@@ -60,7 +62,7 @@ public class Voter {
     public void setName(String name) {
         this.name = name;
     }
-    
+    @XmlElement
     public String getEmail() {
         return email;
     }
@@ -86,7 +88,7 @@ public class Voter {
         this.pollingStationCode = pollingStationCode;
     }
 
-    
+    @XmlElement
     public String getPassword() {
         return password;
     }
