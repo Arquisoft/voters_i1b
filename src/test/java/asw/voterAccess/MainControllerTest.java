@@ -41,8 +41,7 @@ public class MainControllerTest {
 	public void getLanding() throws Exception {
 		String userURI = base.toString();  
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
-		assertThat(response.getBody(), equalTo("<!DOCTYPE html>"+
-				"<!DOCTYPE html>"+
+		assertThat(response.getBody(), equalTo(	"<!DOCTYPE html>"+
 "<html lang=\"en\">"+
 "	<head>"+
 "		<link rel=\"stylesheet\" href=\"http://yui.yahooapis.com/pure/0.6.0/pure-min.css\">"+
