@@ -13,7 +13,7 @@ import asw.model.VoterNewPassword;
 
 
 @RestController
-public class MainController {
+public class MainRestController {
 
 
     @Autowired

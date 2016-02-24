@@ -35,6 +35,22 @@ public class VoterNewPassword {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+
+	        VoterNewPassword voter = (VoterNewPassword) o;
+
+	        return email.equals(voter.getEmail());
+
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        return email.hashCode();
+	    }
 	 
 
 }
