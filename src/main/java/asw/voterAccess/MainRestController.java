@@ -56,23 +56,20 @@ public class MainRestController {
     }
 
     @RequestMapping("/")
-    //@ResponseBody
     public String landing() {
-    	return "test";
- /*       return "<!DOCTYPE html>"+
+       return "<!DOCTYPE html>"+
 "<html lang=\"en\">"+
 "	<head>"+
+"		<link rel=\"stylesheet\" href=\"http://yui.yahooapis.com/pure/0.6.0/pure-min.css\">"+
 "		<meta charset=\"UTF-8\">"+
 "		<title>Voting System</title>"+
 "		<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js\"></script>		"+
 "	</head>"+
-"	<body>"+
-"		<form id=form>"+
-"			<label for=\"_user_email\">Email:</label>"+
-"			<input id= \"_user_email\" type=\"text\" name=\"email\"><br>"+
-"			<label for=\"_user_pass\">Password:</label>"+
-"			<input id=\"_user_pass\" type=\"password\" name=\"password\"><br> "+
-"			<input type=\"button\" value=\"Submit\" onclick=\"submitform()\" />"+
+"	<body></br>"+
+"		<form id=form class=\"pure-form\">"+
+"			<input id= \"_user_email\" type=\"text\" name=\"email\"  placeholder=\"Email\">"+
+"			<input id=\"_user_pass\" type=\"password\" name=\"password\" placeholder=\"Password\">"+
+"			<input type=\"button\" value=\"Submit\" onclick=\"submitform()\" class=\"pure-button pure-button-primary\"/>"+
 "		</form>"+
 "		<div id=code></div>"+
 "		"+
@@ -112,7 +109,6 @@ public class MainRestController {
 "        </script>"+
 "	</body>"+
 "</html>";
-	*/
 
     }
     
