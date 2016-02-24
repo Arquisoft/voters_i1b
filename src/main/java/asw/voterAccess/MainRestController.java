@@ -56,9 +56,10 @@ public class MainRestController {
     }
 
     @RequestMapping("/")
-    @ResponseBody
+    //@ResponseBody
     public String landing() {
-        return "<!DOCTYPE html>"+
+    	return "test";
+ /*       return "<!DOCTYPE html>"+
 "<html lang=\"en\">"+
 "	<head>"+
 "		<meta charset=\"UTF-8\">"+
@@ -111,7 +112,7 @@ public class MainRestController {
 "        </script>"+
 "	</body>"+
 "</html>";
-	
+	*/
 
     }
     
