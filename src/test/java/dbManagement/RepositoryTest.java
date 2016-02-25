@@ -19,7 +19,7 @@ import asw.model.Voter;
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0"})
-public class TestRepository {
+public class RepositoryTest {
 
 	private String email;
 	private String pass;

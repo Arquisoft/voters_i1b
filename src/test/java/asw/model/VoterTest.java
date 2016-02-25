@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import asw.model.Voter;
 
-public class TestVoter {
+public class VoterTest {
 
     @Test
     public void testModel(){
